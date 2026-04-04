@@ -7,6 +7,7 @@ type AppContextType = {
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
   role: Role;
   setRole: (role: Role)=>void;
+  deleteTransaction: (id: number) => void;
 };
 
 const AppContext=createContext<AppContextType | null>(null);
@@ -15,8 +16,12 @@ export const AppProvider=({ children }:{ children: React.ReactNode })=>{
   const [transactions,setTransactions]=useState<Transaction[]>(mockData);
   const [role,setRole]=useState<Role>("viewer");
 
+  const deleteTransaction=(id: number)=>{
+    setTransactions((prev) => prev.filter((t) => t.id !== id));
+    };
+
   return (
-    <AppContext.Provider value={{transactions,setTransactions,role,setRole}}>
+    <AppContext.Provider value={{transactions,setTransactions,role,setRole,deleteTransaction}}>
       {children}
     </AppContext.Provider>
   );

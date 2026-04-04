@@ -3,6 +3,8 @@ import { CategoryChart } from "./components/Dashboard/CategoryChart";
 import { SummaryCards } from "./components/Dashboard/SummaryCard";
 import { Layout } from "./components/Layout";
 import { RoleSwitcher } from "./components/RoleSwitcher";
+import { AddTransaction } from "./components/Transactions/AddTransaction";
+import { TransactionsTable } from "./components/Transactions/TransactionsTable";
 
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
       <SummaryCards/>
       <BalanceChart/>
       <CategoryChart/>
+
+      <AddTransaction/>
+      <TransactionsTable/>
     </Layout>
   );
 }
