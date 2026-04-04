@@ -22,8 +22,12 @@ export const Insights=()=>{
   const lastMonthTotal=expenses.filter((t) => new Date(t.date).getMonth() === lastMonth)
     .reduce((acc, t) => acc + t.amount, 0);
 
-  const difference=currentMonthTotal-lastMonthTotal;
+  const totalThisMonth=expenses.filter((t)=>new Date(t.date).getMonth() === currentMonth)
+    .reduce((acc, t)=>acc + t.amount, 0);
 
+  const avgExpense=expenses.length>0?Math.round(expenses.reduce((acc, t)=>acc+t.amount,0)/expenses.length):0;
+
+  const difference=currentMonthTotal-lastMonthTotal;
   const freqMap: Record<string,number>={};
 
   expenses.forEach((t)=>{
@@ -35,7 +39,7 @@ export const Insights=()=>{
   )[0];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       
       <InsightCard title="Top Spending Category"
         value={ highestCategory ? `${highestCategory[0]} (₹${highestCategory[1]})` : "No data"}
@@ -48,6 +52,12 @@ export const Insights=()=>{
       <InsightCard title="Most Frequent Category"
         value={mostFrequent ? mostFrequent[0] : "No data"}
       />
+
+      <InsightCard title="Total Spending (This Month)"
+        value={`₹${totalThisMonth}`}
+      />
+
+      <InsightCard title="Average Expense" value={`₹${avgExpense}`}/>
       
     </div>
   );
@@ -59,7 +69,7 @@ type InsightProps={
 };
 
 const InsightCard=({title,value}:InsightProps)=>(
-  <div className="bg-white p-4 rounded-xl shadow">
+  <div className="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
     <p className="text-gray-500">{title}</p>
     <h2 className="text-lg font-semibold">{value}</h2>
   </div>
