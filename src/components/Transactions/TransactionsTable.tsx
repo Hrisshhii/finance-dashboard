@@ -29,14 +29,14 @@ export const TransactionsTable=()=>{
 
   return (
     <div className="bg-white p-4 rounded-xl shadow my-4">
-      <div className="flex flex-col md:flex-row gap-4 my-4">
+      <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row gap-3 my-4">
         
         <input type="text" value={search} placeholder="Search category..."
           onChange={e=>setSearch(e.target.value)}
           className="border p-2 rounded w-full md:w-1/3"
         />
 
-        <select value={filter} className="border p-2 rounded w-full md:w-1/4"
+        <select value={filter} className="border p-2 rounded w-full md:w-1/3"
           onChange={e=>setFilter(e.target.value as any)}
         >
           <option value="all">All</option>
@@ -44,14 +44,14 @@ export const TransactionsTable=()=>{
           <option value="expense">Expense</option>
         </select>
 
-        <select value={sortBy} className="border p-2 rounded"
+        <select value={sortBy} className="border p-2 rounded md:w-1/3"
           onChange={e=>setSortBy(e.target.value as any)}
         >
           <option value="date">Sort by Date</option>
           <option value="amount">Sort by Amount</option>
         </select>
 
-        <select value={order} className="border p-2 rounded"
+        <select value={order} className="border p-2 rounded md:w-1/3"
           onChange={e=>setOrder(e.target.value as any)}
         >
           <option value="desc">Descending</option>
@@ -60,7 +60,7 @@ export const TransactionsTable=()=>{
 
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full text-left">
           <thead>
             <tr className="border-b">
@@ -167,6 +167,97 @@ export const TransactionsTable=()=>{
             )}
           </tbody>
         </table>
+      </div>
+
+      <div className="md:hidden space-y-3">
+        {sorted.length === 0 ? (
+          <div className="text-center text-gray-500">No transactions</div>
+        ):(
+          sorted.map((t)=>{
+            const isEditing=editingId===t.id;
+
+            return(
+              <div key={t.id} className="bg-gray-50 p-4 rounded-xl shadow-sm space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-500">{t.date}</span>
+                  <span className={`text-sm font-medium ${t.type==="income"?"text-green-600":"text-red-500"}`}>
+                    ₹{t.amount}
+                  </span>
+                </div>
+
+                <div>
+                  {isEditing ? (
+                    <input value={editForm.category} className="border p-1 rounded w-full"
+                      onChange={(e)=>setEditForm({ ...editForm, category: e.target.value })}
+                    />
+                  ):(
+                    <span className="font-medium">{t.category}</span>
+                  )}
+                </div>
+
+                <div className="text-sm capitalize">
+                  {isEditing ? (
+                    <select value={editForm.type} className="border p-1 rounded w-full"
+                      onChange={(e) => setEditForm({ ...editForm, type: e.target.value })}
+                    >
+                      <option value="income">Income</option>
+                      <option value="expense">Expense</option>
+                    </select>
+                  ):(
+                    <span className={t.type==="income"?"text-green-500":"text-red-500"}>
+                      {t.type}
+                    </span>
+                  )}
+                </div>
+
+                {role === "admin" && (
+                  <div className="flex gap-3 pt-2">
+                    {isEditing?(
+                      <>
+                        <button className="text-green-500"
+                          onClick={()=>{
+                            updateTransaction({
+                              ...t,
+                              amount: Number(editForm.amount),
+                              category: editForm.category,
+                              type: editForm.type as any,
+                            });
+                            setEditingId(null);
+                          }}
+                        >
+                          Save
+                        </button>
+
+                        <button onClick={()=>setEditingId(null)} className="text-gray-500">
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button className="text-blue-500"
+                          onClick={() => {
+                            setEditingId(t.id);
+                            setEditForm({
+                              amount: String(t.amount),
+                              category: t.category,
+                              type: t.type,
+                            });
+                          }}
+                        >
+                          Edit
+                        </button>
+
+                        <button onClick={()=>deleteTransaction(t.id)} className="text-red-500">
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );
