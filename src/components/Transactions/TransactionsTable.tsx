@@ -17,7 +17,7 @@ export const TransactionsTable=()=>{
     .filter((t)=>(filter === "all" ? true : t.type === filter));
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow">
+    <div className="bg-white p-4 rounded-xl shadow my-4">
       <div className="flex flex-col md:flex-row gap-4 my-4">
         
         <input type="text" value={search} placeholder="Search category..."
