@@ -9,7 +9,7 @@ type LayoutProps = {
 };
 
 export const Layout=({ children,active,setActive }:LayoutProps) => {
-  const [collapsed,setCollapsed]=useState(false);
+  const [collapsed,setCollapsed]=useState(true);
 
   return (
     <div className="flex min-h-screen bg-gray-100">
