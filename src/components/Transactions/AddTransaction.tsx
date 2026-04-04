@@ -47,7 +47,7 @@ export const AddTransaction=()=>{
           <option value="income">Income</option>
         </select>
 
-        <button onClick={handleAdd} className="bg-indigo-500 text-white px-4 rounded">
+        <button onClick={handleAdd} className="bg-indigo-500 text-white px-4 rounded hover:scale-110 hover:opacity-60 transition duration-300 cursor-pointer">
           Add
         </button>
       </div>

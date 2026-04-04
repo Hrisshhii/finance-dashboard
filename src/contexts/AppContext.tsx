@@ -7,7 +7,8 @@ type AppContextType = {
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
   role: Role;
   setRole: (role: Role)=>void;
-  deleteTransaction: (id: number) => void;
+  deleteTransaction: (id: number)=>void;
+  updateTransaction: (t: Transaction)=>void;
 };
 
 const AppContext=createContext<AppContextType | null>(null);
@@ -18,10 +19,14 @@ export const AppProvider=({ children }:{ children: React.ReactNode })=>{
 
   const deleteTransaction=(id: number)=>{
     setTransactions((prev) => prev.filter((t) => t.id !== id));
-    };
+  };
+
+  const updateTransaction=(updated:Transaction)=>{
+    setTransactions((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
+  };
 
   return (
-    <AppContext.Provider value={{transactions,setTransactions,role,setRole,deleteTransaction}}>
+    <AppContext.Provider value={{transactions,setTransactions,role,setRole,deleteTransaction,updateTransaction}}>
       {children}
     </AppContext.Provider>
   );
