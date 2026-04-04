@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BalanceChart } from "./components/Dashboard/BalanceChart";
 import { CategoryChart } from "./components/Dashboard/CategoryChart";
 import { SummaryCards } from "./components/Dashboard/SummaryCard";
@@ -8,21 +9,35 @@ import { AddTransaction } from "./components/Transactions/AddTransaction";
 import { TransactionsTable } from "./components/Transactions/TransactionsTable";
 
 function App() {
+  const [active,setActive]=useState("Dashboard");
   return (
-    <Layout>
+    <Layout active={active} setActive={setActive}>
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <h1 className="text-2xl font-bold">{active}</h1>
         <RoleSwitcher />
       </div>
 
-      <SummaryCards/>
-      <BalanceChart/>
-      <CategoryChart/>
-
-      <AddTransaction/>
-      <TransactionsTable/>
-
-      <Insights/>
+      {active==="Dashboard" && (
+        <>
+          <SummaryCards/>
+          <BalanceChart/>
+          <CategoryChart/>
+        </>
+      )}
+      
+      {active==="Transactions" && (
+        <>
+          <AddTransaction/>
+          <TransactionsTable/>
+        </>
+      )}
+      
+      {active==="Insights" && (
+        <>
+          <Insights/>
+        </>
+      )}
+      
     </Layout>
   );
 }

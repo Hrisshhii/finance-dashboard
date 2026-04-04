@@ -2,9 +2,14 @@ import { useState } from "react";
 import clsx from "clsx";
 import { ChartNoAxesCombined, DollarSign, LayoutDashboard, TableOfContents } from "lucide-react";
 
-export const Layout=({ children }: { children: React.ReactNode }) => {
+type LayoutProps = {
+  children: React.ReactNode;
+  active: string;
+  setActive: (val: string) => void;
+};
+
+export const Layout=({ children,active,setActive }:LayoutProps) => {
   const [collapsed,setCollapsed]=useState(false);
-  const [active,setActive]=useState("Dashboard");
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -23,7 +28,7 @@ export const Layout=({ children }: { children: React.ReactNode }) => {
         </nav>
       </div>
 
-      <div className="flex-1 p-6">{children}</div>
+      <div className="flex-1 p-6 transition-all duration-300">{children}</div>
     </div>
   );
 };
