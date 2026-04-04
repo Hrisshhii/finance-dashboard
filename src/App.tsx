@@ -1,11 +1,17 @@
+import { Layout } from "./components/Layout";
+import { RoleSwitcher } from "./components/RoleSwitcher";
 
 function App() {
-
   return (
-    <div className="text-center text-blue-500 text-6xl text-bold">
-      Tailwind 
-    </div>
-  )
+    <Layout>
+      <div className="flex justify-between mb-4">
+        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <RoleSwitcher />
+      </div>
+
+      {/* We'll add sections here */}
+    </Layout>
+  );
 }
 
-export default App
+export default App;
