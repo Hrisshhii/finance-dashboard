@@ -7,6 +7,8 @@ export const TransactionsTable=()=>{
   const [search,setSearch]=useState("");
   const [filter,setFilter]=useState<"all"|"income"|"expense">("all");
   const [editingId,setEditingId]=useState<number|null>(null);
+  const [order,setOrder]=useState<"asc"|"desc">("desc");
+  const [sortBy,setSortBy]=useState<"date"|"amount">("date");
   const [editForm,setEditForm]=useState({
     amount:"",
     category:"",
@@ -16,22 +18,44 @@ export const TransactionsTable=()=>{
   const filtered=transactions.filter((t)=>t.category.toLowerCase().includes(search.toLowerCase()))
     .filter((t)=>(filter === "all" ? true : t.type === filter));
 
+  const sorted=[...filtered].sort((a,b)=>{
+    if(sortBy==="amount"){
+      return order==="asc"?a.amount-b.amount:b.amount-a.amount;
+    }else{
+      return order==="asc"?new Date(a.date).getTime()-new Date(b.date).getTime()
+        : new Date(b.date).getTime()-new Date(a.date).getTime();
+    }
+  });
+
   return (
     <div className="bg-white p-4 rounded-xl shadow my-4">
       <div className="flex flex-col md:flex-row gap-4 my-4">
         
         <input type="text" value={search} placeholder="Search category..."
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={e=>setSearch(e.target.value)}
           className="border p-2 rounded w-full md:w-1/3"
         />
 
-        <select value={filter}
-          onChange={(e) => setFilter(e.target.value as any)}
-          className="border p-2 rounded w-full md:w-1/4"
+        <select value={filter} className="border p-2 rounded w-full md:w-1/4"
+          onChange={e=>setFilter(e.target.value as any)}
         >
           <option value="all">All</option>
           <option value="income">Income</option>
           <option value="expense">Expense</option>
+        </select>
+
+        <select value={sortBy} className="border p-2 rounded"
+          onChange={e=>setSortBy(e.target.value as any)}
+        >
+          <option value="date">Sort by Date</option>
+          <option value="amount">Sort by Amount</option>
+        </select>
+
+        <select value={order} className="border p-2 rounded"
+          onChange={e=>setOrder(e.target.value as any)}
+        >
+          <option value="desc">Descending</option>
+          <option value="asc">Ascending</option>
         </select>
 
       </div>
@@ -56,10 +80,10 @@ export const TransactionsTable=()=>{
                 </td>
               </tr>
             ):(
-              filtered.map((t)=>{
+              sorted.map((t)=>{
                 const isEditing=editingId===t.id;
                 return (
-                  <tr key={t.id} className="border-b hover:bg-gray-50">
+                  <tr key={t.id} className="border-b hover:bg-gray-100 transition">
                     <td className="p-2">{t.date}</td>
                     <td className="p-2">
                       {isEditing ? (
