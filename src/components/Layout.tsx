@@ -4,6 +4,7 @@ import { ChartNoAxesCombined, DollarSign, LayoutDashboard, TableOfContents } fro
 
 export const Layout=({ children }: { children: React.ReactNode }) => {
   const [collapsed,setCollapsed]=useState(false);
+  const [active,setActive]=useState("Dashboard");
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -16,9 +17,9 @@ export const Layout=({ children }: { children: React.ReactNode }) => {
         </div>
 
         <nav className="space-y-4">
-          <NavItem label="Dashboard" icon={<LayoutDashboard/>} collapsed={collapsed} />
-          <NavItem label="Transactions" icon={<DollarSign/>} collapsed={collapsed} />
-          <NavItem label="Insights" icon={<ChartNoAxesCombined/>} collapsed={collapsed} />
+          <NavItem label="Dashboard" icon={<LayoutDashboard/>} collapsed={collapsed} active={active} setActive={setActive}/>
+          <NavItem label="Transactions" icon={<DollarSign/>} collapsed={collapsed} active={active} setActive={setActive}/>
+          <NavItem label="Insights" icon={<ChartNoAxesCombined/>} collapsed={collapsed} active={active} setActive={setActive}/>
         </nav>
       </div>
 
@@ -31,11 +32,19 @@ type NavProp={
   label:string;
   collapsed:boolean;
   icon:React.ReactNode;
+  active:string;
+  setActive:(val:string)=>void;
 };
 
-const NavItem = ({ label,collapsed,icon }:NavProp)=>{
+const NavItem = ({ label,collapsed,icon,active,setActive }:NavProp)=>{
+  const isActive=active===label;
   return (
-    <div className={`flex items-center gap-3 cursor-pointer hover:bg-gray-100 p-2 rounded ${collapsed?"justify-center":""}`}>
+    <div className={`flex items-center gap-3 cursor-pointer hover:bg-gray-100 p-2 rounded 
+        ${collapsed?"justify-center":""}
+        ${isActive?"bg-indigo-100 text-indigo-600 hover:bg-indigo-100":"hover:bg-gray-100"}
+      `}
+      onClick={()=>setActive(label)}
+    >
       <span>{icon}</span>
       {!collapsed && <span>{label}</span>}
     </div>
