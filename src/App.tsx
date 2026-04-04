@@ -1,3 +1,6 @@
+import { BalanceChart } from "./components/Dashboard/BalanceChart";
+import { CategoryChart } from "./components/Dashboard/CategoryChart";
+import { SummaryCards } from "./components/Dashboard/SummaryCard";
 import { Layout } from "./components/Layout";
 import { RoleSwitcher } from "./components/RoleSwitcher";
 
@@ -9,7 +12,9 @@ function App() {
         <RoleSwitcher />
       </div>
 
-      {/* We'll add sections here */}
+      <SummaryCards/>
+      <BalanceChart/>
+      <CategoryChart/>
     </Layout>
   );
 }
