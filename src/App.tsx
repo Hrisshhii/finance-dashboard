@@ -1,6 +1,7 @@
 import { BalanceChart } from "./components/Dashboard/BalanceChart";
 import { CategoryChart } from "./components/Dashboard/CategoryChart";
 import { SummaryCards } from "./components/Dashboard/SummaryCard";
+import { Insights } from "./components/Insights/Insights";
 import { Layout } from "./components/Layout";
 import { RoleSwitcher } from "./components/RoleSwitcher";
 import { AddTransaction } from "./components/Transactions/AddTransaction";
@@ -20,6 +21,8 @@ function App() {
 
       <AddTransaction/>
       <TransactionsTable/>
+
+      <Insights/>
     </Layout>
   );
 }
