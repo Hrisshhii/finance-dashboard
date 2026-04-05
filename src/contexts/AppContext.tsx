@@ -1,4 +1,4 @@
-import { createContext,useContext,useState } from "react";
+import { createContext,useContext,useEffect,useState } from "react";
 import type { Transaction,Role } from "../types/types";
 import { transactions as mockData } from "../data/mockData";
 
@@ -14,8 +14,21 @@ type AppContextType = {
 const AppContext=createContext<AppContextType | null>(null);
 
 export const AppProvider=({ children }:{ children: React.ReactNode })=>{
-  const [transactions,setTransactions]=useState<Transaction[]>(mockData);
-  const [role,setRole]=useState<Role>("viewer");
+  const [transactions,setTransactions]=useState<Transaction[]>(()=>{
+    const stored=localStorage.getItem("transactions");
+    return stored?JSON.parse(stored):mockData;
+  });
+  const [role,setRole]=useState<Role>(()=>{
+    return (localStorage.getItem("role") as Role) || "viewer";
+  });
+
+  useEffect(()=>{
+    localStorage.setItem("transactions",JSON.stringify(transactions));
+  },[transactions]);
+
+  useEffect(()=>{
+    localStorage.setItem("role",role);
+  },[role]);
 
   const deleteTransaction=(id: number)=>{
     setTransactions((prev) => prev.filter((t) => t.id !== id));
