@@ -22,7 +22,7 @@ export const Layout=({ children, active, setActive }: LayoutProps)=>{
         <div className={`flex items-center mb-6 ${collapsed?"justify-center":"justify-between"}`}>
           {!collapsed && <h1 className="text-xl font-bold">Finance</h1>}
           <button onClick={()=>setCollapsed(!collapsed)}
-            className="text-gray-600 dark:text-gray-300 hover:scale-110 transition cursor-pointer hover:text-black dark:hover:text-gray-700"
+            className="text-gray-600 dark:text-gray-300 hover:scale-110 transition cursor-pointer hover:text-black dark:hover:text-gray-500"
           >
             <TableOfContents />
           </button>
@@ -41,7 +41,7 @@ export const Layout=({ children, active, setActive }: LayoutProps)=>{
 
       <div className="flex-1 p-4 md:p-6 w-full max-w-7xl mx-auto">
         <div className="md:hidden mb-4 flex items-center gap-3">
-          <button onClick={()=>setMobileOpen(true)} className="p-2 bg-white dark:bg-gray-800 dark:text-gray-200 rounded shadow">
+          <button onClick={()=>setMobileOpen(true)} className="p-2 bg-white dark:bg-gray-800 dark:text-gray-300 rounded shadow">
             <TableOfContents/>
           </button>
         </div>
@@ -66,7 +66,7 @@ const NavItem=({ label,collapsed,icon,active,setActive }:NavProp)=>{
   return (
     <div className={clsx( "flex items-center gap-3 cursor-pointer p-2 rounded-lg transition-all duration-200",
         collapsed && "justify-center",
-        isActive ? "bg-indigo-100 text-indigo-600" : "hover:bg-gray-100"
+        isActive ? "bg-indigo-100 text-indigo-600" : "hover:bg-gray-100 dark:hover:bg-gray-500"
       )}
       onClick={()=>setActive(label)}
     >
