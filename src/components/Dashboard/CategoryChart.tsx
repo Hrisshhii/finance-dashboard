@@ -19,8 +19,8 @@ export const CategoryChart=()=>{
   }));
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow">
-      <h2 className="font-semibold mb-4">Spending Breakdown</h2>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
+      <h2 className="font-semibold mb-4 dark:text-gray-300">Spending Breakdown</h2>
 
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>

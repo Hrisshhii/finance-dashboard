@@ -13,7 +13,7 @@ function App() {
   return (
     <Layout active={active} setActive={setActive}>
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">{active}</h1>
+        <h1 className="text-2xl font-bold dark:text-white">{active}</h1>
         <RoleSwitcher />
       </div>
 

@@ -19,8 +19,8 @@ export const SummaryCards=()=>{
 };
 
 const Card = ({ title, value }: { title: string; value: number }) => (
-  <div className="bg-white p-4 rounded-xl shadow">
-    <p className="text-gray-500">{title}</p>
-    <h2 className="text-2xl font-bold">₹{value}</h2>
+  <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
+    <p className="text-gray-500 dark:text-gray-400">{title}</p>
+    <h2 className="text-2xl font-bold dark:text-gray-100">₹{value}</h2>
   </div>
 );
