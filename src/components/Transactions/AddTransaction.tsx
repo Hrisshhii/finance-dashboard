@@ -25,7 +25,7 @@ export const AddTransaction=()=>{
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow my-4">
+    <div className="bg-white dark:bg-gray-800 dark:text-gray-100 p-6 rounded-xl shadow my-4">
       <h2 className="font-semibold mb-2">Add Transaction</h2>
 
       <div className="flex flex-col md:flex-row gap-2">

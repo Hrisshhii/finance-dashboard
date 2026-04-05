@@ -28,7 +28,7 @@ export const TransactionsTable=()=>{
   });
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow my-4">
+    <div className="bg-white dark:bg-gray-800 dark:text-gray-200 p-4 rounded-xl shadow my-4">
       <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row gap-3 my-4">
         
         <input type="text" value={search} placeholder="Search category..."
@@ -83,7 +83,7 @@ export const TransactionsTable=()=>{
               sorted.map((t)=>{
                 const isEditing=editingId===t.id;
                 return (
-                  <tr key={t.id} className="border-b hover:bg-gray-100 transition">
+                  <tr key={t.id} className="border-b hover:bg-gray-100 dark:hover:bg-gray-600 transition">
                     <td className="p-2">{t.date}</td>
                     <td className="p-2">
                       {isEditing ? (
@@ -177,9 +177,9 @@ export const TransactionsTable=()=>{
             const isEditing=editingId===t.id;
 
             return(
-              <div key={t.id} className="bg-gray-50 p-4 rounded-xl shadow-sm space-y-2">
+              <div key={t.id} className="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl shadow-sm space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-500">{t.date}</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">{t.date}</span>
                   <span className={`text-sm font-medium ${t.type==="income"?"text-green-600":"text-red-500"}`}>
                     ₹{t.amount}
                   </span>
