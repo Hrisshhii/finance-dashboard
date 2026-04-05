@@ -1,17 +1,16 @@
-# 💸 Finance Dashboard UI
+# Finance Dashboard UI
 
 A clean, responsive and interactive finance dashboard built to help users track and understand their financial activity.
 This project focuses on **UI design, state management, and user experience**, simulating a real-world dashboard without backend dependency.
 
 ---
 
-## 🚀 Live Demo: 
-
+## 🚀 Live Demo: https://finance-dashboard-three-bice.vercel.app/
 ## 📂 Repository: https://github.com/Hrisshhii/finance-dashboard
 
 ---
 
-## 🧠 Overview
+## Overview
 
 This dashboard allows users to:
 
@@ -24,40 +23,38 @@ The goal was to build a **simple yet intuitive interface** that demonstrates str
 
 ---
 
-## ✨ Features
+## Features
 
-### 📊 Dashboard Overview
+### Dashboard Overview
 
 * Summary cards for:
-
   * Total Balance
   * Income
   * Expenses
-* 📈 Balance trend visualization (line chart)
-* 🥧 Spending breakdown (category-based chart)
+* Balance trend visualization (line chart)
+* Spending breakdown (category-based chart)
 
 ---
 
 ### 💳 Transactions Section
 
 * Transaction table with:
-
   * Date
   * Category
   * Type (income/expense)
   * Amount
 * Features:
 
-  * 🔍 Search by category
-  * 🎯 Filter (income/expense)
-  * ↕️ Sorting (date/amount)
-  * ✏️ Inline editing (Admin only)
-  * ❌ Delete transactions (Admin only)
-  * ➕ Add new transactions
+  * Search by category
+  * Filter (income/expense)
+  * Sorting (date/amount)
+  * Inline editing (Admin only)
+  * Delete transactions (Admin only)
+  * Add new transactions
 
 ---
 
-### 🔐 Role-Based UI (Simulated)
+### Role-Based UI (Simulated)
 
 * **Viewer**
   * Read-only access
@@ -68,7 +65,7 @@ Role can be switched using a dropdown for demonstration.
 
 ---
 
-### 📊 Insights Section
+### Insights Section
 
 Provides useful financial insights:
 * Highest spending category
@@ -79,7 +76,7 @@ Provides useful financial insights:
 
 ---
 
-### 🌙 Dark Mode
+### Dark Mode
 
 * Toggle between light and dark themes
 * Theme preference stored using localStorage
@@ -87,21 +84,21 @@ Provides useful financial insights:
 
 ---
 
-### 💾 Data Persistence
+### Data Persistence
 
 * Transactions and role are stored in **localStorage**
 * Data persists across page refresh
 
 ---
 
-### 📥 Export Functionality
+### Export Functionality
 
 * Export all transactions as a CSV file
 * Enables quick data sharing and analysis
 
 ---
 
-### 📱 Responsive Design
+### Responsive Design
 
 * Fully responsive across:
   * Mobile
@@ -112,7 +109,7 @@ Provides useful financial insights:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * **React (Vite)**
 * **TypeScript**
@@ -123,7 +120,7 @@ Provides useful financial insights:
 
 ---
 
-## 🧩 Architecture & Approach
+## Architecture & Approach
 
 ### 1. Component-Based Structure
 
@@ -184,41 +181,27 @@ Chosen for simplicity and to avoid unnecessary complexity like Redux.
 
 ---
 
-## ⚡ Getting Started
+## Getting Started
 
 ### 1. Clone the repository
-
 ```bash
 git clone <your-repo-link>
 cd finance-dashboard
 ```
 
 ### 2. Install dependencies
-
 ```bash
 npm install
 ```
 
 ### 3. Run the project
-
 ```bash
 npm run dev
 ```
 
 ---
 
-## 🔮 Future Improvements
-
-* Backend integration (API + database)
-* Authentication system
-* Advanced analytics and reports
-* Pagination for large datasets
-* Multi-user support
-* Real-time updates
-
----
-
-## 📌 Key Highlights
+## Key Highlights
 
 * Clean and intuitive UI design
 * Thoughtful UX decisions
@@ -228,7 +211,7 @@ npm run dev
 
 ---
 
-## 🙌 Final Note
+## Final Note
 
 This project was built with a focus on **clarity, usability, and clean architecture**, rather than overcomplicating features.
 It reflects how I approach building real-world frontend applications.
