@@ -69,8 +69,8 @@ type InsightProps={
 };
 
 const InsightCard=({title,value}:InsightProps)=>(
-  <div className="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
-    <p className="text-gray-500">{title}</p>
-    <h2 className="text-lg font-semibold">{value}</h2>
+  <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow hover:shadow-lg transition">
+    <p className="text-gray-500 dark:text-gray-400">{title}</p>
+    <h2 className="text-lg font-semibold dark:text-white">{value}</h2>
   </div>
 );
