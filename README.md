@@ -5,8 +5,8 @@ This project focuses on **UI design, state management, and user experience**, si
 
 ---
 
-## 🚀 Live Demo: https://finance-dashboard-three-bice.vercel.app/
-## 📂 Repository: https://github.com/Hrisshhii/finance-dashboard
+## Live Demo: https://finance-dashboard-three-bice.vercel.app/
+## Repository: https://github.com/Hrisshhii/finance-dashboard
 
 ---
 
@@ -36,7 +36,7 @@ The goal was to build a **simple yet intuitive interface** that demonstrates str
 
 ---
 
-### 💳 Transactions Section
+### Transactions Section
 
 * Transaction table with:
   * Date
